@@ -1,0 +1,24 @@
+import socket
+import random
+
+H1_SWITCH_IP = '10.0.1.1'
+H2_PORT = 5002
+H3_PORT = 5003
+BUFFER_SIZE = 1024
+MESSAGE = b"Hello, World!"
+
+s2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s2.connect((H1_SWITCH_IP, H2_PORT))
+
+s3 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s3.connect((H1_SWITCH_IP, H3_PORT))
+
+for i in range(100):
+    if random.randint(1, 2) == 1:
+        s2.send(MESSAGE)
+    else:
+        s3.send(MESSAGE)
+
+s2.close()
+s3.close()
+

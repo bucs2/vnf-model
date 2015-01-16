@@ -1,0 +1,5 @@
+import os
+
+os.system("python3 flow_to_h2.py &")
+os.system("python3 flow_to_h3.py &")
+
